@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabel Responsif dengan Iklan Adsterra</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        h1 {
+            color: #0056b3;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Container untuk membuat tabel responsif dengan scroll horizontal */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto; /* Aktifkan scroll horizontal jika konten melebihi lebar */
+            -webkit-overflow-scrolling: touch; /* Untuk scrolling yang lebih mulus di iOS */
+            margin: 0 auto;
+            max-width: 900px; /* Batasi lebar maksimum container tabel */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+
+        table {
+            width: 100%; /* Tabel akan mengisi 100% dari .table-responsive */
+            border-collapse: collapse;
+            min-width: 600px; /* Minimal lebar tabel, agar tidak terlalu sempit */
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top; /* Agar konten di sel iklan tidak mengambang */
+        }
+
+        th {
+            background-color: #e9ecef;
+            color: #495057;
+            font-weight: bold;
+            white-space: nowrap; /* Mencegah teks header pecah baris terlalu cepat */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #e2e6ea;
+        }
+
+        .ad-container {
+            text-align: center;
+            padding: 15px;
+            background-color: #f0f8ff;
+            min-width: 250px; /* Lebar minimum untuk sel iklan agar iklan Adsterra punya ruang */
+            max-width: 350px; /* Batasi lebar maksimum jika iklan tidak responsif */
+            width: auto; /* Izinkan lebar otomatis jika iklan responsif */
+        }
+
+        /* Jika iklan Adsterra adalah "native display" yang sepenuhnya responsif, 
+           maka width dan min-width di .ad-container mungkin tidak terlalu diperlukan
+           atau bisa disesuaikan. Sesuaikan ini berdasarkan tipe iklan Adsterra Anda. */
+        
+        .note {
+            margin-top: 30px;
+            text-align: center;
+            font-style: italic;
+            color: #6c757d;
+        }
+
+        /* Media Queries untuk penyesuaian lebih lanjut pada layar kecil */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 24px;
+            }
+            body {
+                margin: 10px;
+            }
+            th, td {
+                padding: 10px;
+            }
+            .ad-container {
+                min-width: unset; /* Hapus min-width pada layar kecil jika perlu */
+                max-width: 100%; /* Biarkan iklan mengisi lebar sel sepenuhnya */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Tabel Produk dengan Slot Iklan Adsterra Responsif</h1>
+
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama Produk</th>
+                    <th>Spesifikasi Utama</th>
+                    <th>Harga (IDR)</th>
+                    <th>Ketersediaan</th>
+                    <th>Rekomendasi Sponsor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Smartphone X1</td>
+                    <td>Layar AMOLED 6.5", Kamera 50MP, Baterai 5000mAh</td>
+                    <td>3.500.000</td>
+                    <td>Ada</td>
+                    <td class="ad-container">
+                        <script async="async" data-cfasync="false" src="//pl26583030.profitableratecpm.com/2c979ea6eea470e28aecac661089d1a9/invoke.js"></script>
+                        <div id="container-2c979ea6eea470e28aecac661089d1a9"></div>
+                        </td>
+                </tr>
+                <tr>
+                    <td>Laptop Pro M3</td>
+                    <td>Intel Core i7, RAM 16GB, SSD 512GB</td>
+                    <td>12.800.000</td>
+                    <td>Terbatas</td>
+                    <td></td> </tr>
+                <tr>
+                    <td>Smartwatch Z Series</td>
+                    <td>Pemantau Detak Jantung, GPS, Waterproof</td>
+                    <td>1.200.000</td>
+                    <td>Ada</td>
+                    <td class="ad-container">
+                        <script async="async" data-cfasync="false" src="//pl26583030.profitableratecpm.com/2c979ea6eea470e28aecac661089d1a9/invoke.js"></script>
+                        <div id="container-2c979ea6eea470e28aecac661089d1a9"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Headphone Noise Cancelling</td>
+                    <td>Baterai 30 jam, Koneksi Bluetooth 5.0</td>
+                    <td>950.000</td>
+                    <td>Pre-order</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p class="note">
+        Gulir ke samping (&larr; &rarr;) pada perangkat kecil untuk melihat seluruh tabel. Iklan Adsterra akan menyesuaikan diri sebaik mungkin dalam kolom "Rekomendasi Sponsor".
+        <br>Jika iklan tidak muncul, pastikan skrip Adsterra sudah benar dan Anda memiliki koneksi internet aktif.
+    </p>
+
+</body>
+</html>
