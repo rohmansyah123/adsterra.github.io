@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>Ambil Daget Sekarang!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -11,6 +12,8 @@
     min-height: 100vh;
     background-color: #f0f0f0;
     margin: 0;
+    padding: 20px; /* Tambahkan padding agar tidak terlalu mepet di layar kecil */
+    box-sizing: border-box; /* Pastikan padding tidak menambah lebar elemen */
   }
   .container {
     background-color: #fff;
@@ -18,15 +21,19 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    max-width: 500px; /* Batasi lebar maksimum container */
+    width: 100%; /* Pastikan container mengambil 100% lebar yang tersedia */
   }
   h1 {
     color: #333;
     margin-bottom: 20px;
+    font-size: 2.5em; /* Ukuran font H1 default */
   }
   #countdown {
     font-size: 3em;
     color: #e44d26;
     margin-bottom: 30px;
+    font-weight: bold;
   }
   .button {
     background-color: #4CAF50;
@@ -38,10 +45,48 @@
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
+    transition: background-color 0.3s ease; /* Transisi halus saat hover */
   }
   .button:hover {
     background-color: #45a049;
   }
+
+  /* --- Media Queries untuk Responsif --- */
+
+  /* Untuk layar dengan lebar maksimum 600px (biasanya ponsel) */
+  @media (max-width: 600px) {
+    .container {
+      padding: 20px; /* Kurangi padding container */
+    }
+    h1 {
+      font-size: 1.8em; /* Kecilkan ukuran font H1 */
+    }
+    #countdown {
+      font-size: 2.5em; /* Kecilkan ukuran font countdown */
+      margin-bottom: 20px;
+    }
+    .button {
+      padding: 12px 20px; /* Kurangi padding tombol */
+      font-size: 1em; /* Kecilkan ukuran font tombol */
+      width: 90%; /* Buat tombol agak lebar di layar kecil */
+      box-sizing: border-box;
+    }
+  }
+
+  /* Untuk layar dengan lebar maksimum 400px (ponsel sangat kecil) */
+  @media (max-width: 400px) {
+    h1 {
+      font-size: 1.5em;
+    }
+    #countdown {
+      font-size: 2em;
+    }
+    .button {
+      font-size: 0.9em;
+      padding: 10px 15px;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -62,13 +107,14 @@
     const minutes = Math.floor(timeInSeconds / 60);
     const seconds = timeInSeconds % 60;
 
-    countdownElement.textContent = 
+    countdownElement.textContent =
       `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
     if (timeInSeconds <= 0) {
       clearInterval(countdownInterval);
       countdownElement.textContent = "Waktu Habis!";
       dagetButton.style.display = 'none'; // Hide the button when time is up
+      // Opsional: Anda bisa menambahkan redirect atau pesan lain di sini
     } else {
       timeInSeconds--;
     }
