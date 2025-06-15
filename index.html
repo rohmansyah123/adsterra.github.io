@@ -1,261 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabel Responsif dengan Iklan Adsterra</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-
-        h1 {
-            color: #0056b3;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        /* Container untuk membuat tabel responsif dengan scroll horizontal */
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto; /* Aktifkan scroll horizontal jika konten melebihi lebar */
-            -webkit-overflow-scrolling: touch; /* Untuk scrolling yang lebih mulus di iOS */
-            margin: 0 auto;
-            max-width: 900px; /* Batasi lebar maksimum container tabel */
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            background-color: #fff;
-        }
-
-        table {
-            width: 100%; /* Tabel akan mengisi 100% dari .table-responsive */
-            border-collapse: collapse;
-            min-width: 600px; /* Minimal lebar tabel, agar tidak terlalu sempit */
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-            vertical-align: top; /* Agar konten di sel iklan tidak mengambang */
-        }
-
-        th {
-            background-color: #e9ecef;
-            color: #495057;
-            font-weight: bold;
-            white-space: nowrap; /* Mencegah teks header pecah baris terlalu cepat */
-        }
-
-        tr:nth-child(even) {
-            background-color: #f8f9fa;
-        }
-
-        tr:hover {
-            background-color: #e2e6ea;
-        }
-
-        .ad-container {
-            text-align: center;
-            padding: 15px;
-            background-color: #f0f8ff;
-            min-width: 50px; /* Lebar minimum untuk sel iklan agar iklan Adsterra punya ruang */
-            max-width: 50px; /* Batasi lebar maksimum jika iklan tidak responsif */
-            width: 50; /* Izinkan lebar otomatis jika iklan responsif */
-        }
-
-        /* Jika iklan Adsterra adalah "native display" yang sepenuhnya responsif, 
-           maka width dan min-width di .ad-container mungkin tidak terlalu diperlukan
-           atau bisa disesuaikan. Sesuaikan ini berdasarkan tipe iklan Adsterra Anda. */
-        
-        .note {
-            margin-top: 30px;
-            text-align: center;
-            font-style: italic;
-            color: #6c757d;
-        }
-
-        /* Media Queries untuk penyesuaian lebih lanjut pada layar kecil */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 24px;
-            }
-            body {
-                margin: 10px;
-            }
-            th, td {
-                padding: 10px;
-            }
-            .ad-container {
-                min-width: unset; /* Hapus min-width pada layar kecil jika perlu */
-                max-width: 100%; /* Biarkan iklan mengisi lebar sel sepenuhnya */
-            }
-        }
-    </style>
+<title>Ambil Daget Sekarang!</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+  }
+  .container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  h1 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  #countdown {
+    font-size: 3em;
+    color: #e44d26;
+    margin-bottom: 30px;
+  }
+  .button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .button:hover {
+    background-color: #45a049;
+  }
+</style>
 </head>
 <body>
 
-    <h1>Tabel Produk dengan Slot Iklan Adsterra Responsif</h1>
+<div class="container">
+  <h1>Ambil Daget Sekarang!</h1>
+  <div id="countdown">03:00</div>
+  <a href="#" class="button" id="dagetButton">Klaim Daget Anda!</a>
+</div>
 
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
+<script>
+  // Set the countdown time in seconds (3 minutes = 180 seconds)
+  let timeInSeconds = 180;
+  const countdownElement = document.getElementById('countdown');
+  const dagetButton = document.getElementById('dagetButton');
 
-                 <th>Rekomendasi Sponsor</th>
-       
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-              
-                    <td class="ad-container">
-                        <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabel Responsif dengan Iklan Adsterra</title>
-</head>
-<body>
+  function updateCountdown() {
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = timeInSeconds % 60;
 
-                        <script async="async" data-cfasync="false" src="//pl26583030.profitableratecpm.com/2c979ea6eea470e28aecac661089d1a9/invoke.js"></script>
-                        <div id="container-2c979ea6eea470e28aecac661089d1a9"></div>
+    countdownElement.textContent = 
+      `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
-</body>
-</html>
-                        
-                    </td>
-                
-       
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    if (timeInSeconds <= 0) {
+      clearInterval(countdownInterval);
+      countdownElement.textContent = "Waktu Habis!";
+      dagetButton.style.display = 'none'; // Hide the button when time is up
+    } else {
+      timeInSeconds--;
+    }
+  }
 
-    <p class="note">
-        Gulir ke samping (&larr; &rarr;) pada perangkat kecil untuk melihat seluruh tabel. Iklan Adsterra akan menyesuaikan diri sebaik mungkin dalam kolom "Rekomendasi Sponsor".
-        <br>Jika iklan tidak muncul, pastikan skrip Adsterra sudah benar dan Anda memiliki koneksi internet aktif.
-    </p>
-    -----------------------------
-    
-    <h1>Tabel Produk dengan Slot Iklan Adsterra Responsif</h1>
+  const countdownInterval = setInterval(updateCountdown, 1000);
+  updateCountdown(); // Call immediately to display initial time
+</script>
 
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-
-                 <th>Rekomendasi Sponsor</th>
-       
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-              
-                    <td class="ad-container">
-                        <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabel Responsif dengan Iklan Adsterra</title>
-</head>
-<body>
-
-                        <script async="async" data-cfasync="false" src="//pl26583030.profitableratecpm.com/2c979ea6eea470e28aecac661089d1a9/invoke.js"></script>
-                        <div id="container-2c979ea6eea470e28aecac661089d1a9"></div>
-
-</body>
-</html>
-                        
-                    </td>
-                
-       
-                </tr>
-            </tbody>
-        </table>
-    </div>
-------------------------------------
-    
-    <h1>Tabel Produk dengan Slot Iklan Adsterra Responsif</h1>
-
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-
-                 <th>Rekomendasi Sponsor</th>
-       
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-              
-                    <td class="ad-container">
-                        <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabel Responsif dengan Iklan Adsterra</title>
-</head>
-<body>
-
-                        <script async="async" data-cfasync="false" src="//pl26583030.profitableratecpm.com/2c979ea6eea470e28aecac661089d1a9/invoke.js"></script>
-                        <div id="container-2c979ea6eea470e28aecac661089d1a9"></div>
-
-</body>
-</html>
-                        
-                    </td>
-                
-       
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    -------------------------------
-    
-    <h1>Tabel Produk dengan Slot Iklan Adsterra Responsif</h1>
-
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-
-                 <th>Rekomendasi Sponsor</th>
-       
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-              
-                    <td class="ad-container">
-                        <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabel Responsif dengan Iklan Adsterra</title>
-</head>
-<body>
-
-                        <script async="async" data-cfasync="false" src="https://rohmansyah123.github.io/adsterra.github.io/"></script>
-                        <div id="container-2c979ea6eea470e28aecac661089d1a9"></div>
-
-</body>
-</html>
-                        
-                    </td>
-                
-       
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    ----------------------------------
 </body>
 </html>
