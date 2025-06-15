@@ -12,8 +12,8 @@
     min-height: 100vh;
     background-color: #f0f0f0;
     margin: 0;
-    padding: 20px; /* Tambahkan padding agar tidak terlalu mepet di layar kecil */
-    box-sizing: border-box; /* Pastikan padding tidak menambah lebar elemen */
+    padding: 20px;
+    box-sizing: border-box;
   }
   .container {
     background-color: #fff;
@@ -21,13 +21,19 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    max-width: 500px; /* Batasi lebar maksimum container */
-    width: 100%; /* Pastikan container mengambil 100% lebar yang tersedia */
+    max-width: 500px;
+    width: 100%;
   }
   h1 {
     color: #333;
-    margin-bottom: 20px;
-    font-size: 2.5em; /* Ukuran font H1 default */
+    margin-bottom: 10px; /* Kurangi margin bawah agar dekat dengan info hadiah */
+    font-size: 2.5em;
+  }
+  .total-hadiah {
+    color: #007BFF; /* Warna biru untuk menonjolkan */
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px; /* Jarak dengan countdown */
   }
   #countdown {
     font-size: 3em;
@@ -45,7 +51,7 @@
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
-    transition: background-color 0.3s ease; /* Transisi halus saat hover */
+    transition: background-color 0.3s ease;
   }
   .button:hover {
     background-color: #45a049;
@@ -53,30 +59,35 @@
 
   /* --- Media Queries untuk Responsif --- */
 
-  /* Untuk layar dengan lebar maksimum 600px (biasanya ponsel) */
   @media (max-width: 600px) {
     .container {
-      padding: 20px; /* Kurangi padding container */
+      padding: 20px;
     }
     h1 {
-      font-size: 1.8em; /* Kecilkan ukuran font H1 */
+      font-size: 1.8em;
+    }
+    .total-hadiah {
+      font-size: 1.2em;
+      margin-bottom: 15px;
     }
     #countdown {
-      font-size: 2.5em; /* Kecilkan ukuran font countdown */
+      font-size: 2.5em;
       margin-bottom: 20px;
     }
     .button {
-      padding: 12px 20px; /* Kurangi padding tombol */
-      font-size: 1em; /* Kecilkan ukuran font tombol */
-      width: 90%; /* Buat tombol agak lebar di layar kecil */
+      padding: 12px 20px;
+      font-size: 1em;
+      width: 90%;
       box-sizing: border-box;
     }
   }
 
-  /* Untuk layar dengan lebar maksimum 400px (ponsel sangat kecil) */
   @media (max-width: 400px) {
     h1 {
       font-size: 1.5em;
+    }
+    .total-hadiah {
+      font-size: 1em;
     }
     #countdown {
       font-size: 2em;
@@ -93,6 +104,7 @@
 
 <div class="container">
   <h1>Ambil Daget Sekarang!</h1>
+  <p class="total-hadiah">Total Hadiah: **Rp500.000**</p>
   <div id="countdown">03:00</div>
   <a href="#" class="button" id="dagetButton">Klaim Daget Anda!</a>
 </div>
@@ -113,7 +125,7 @@
     if (timeInSeconds <= 0) {
       clearInterval(countdownInterval);
       countdownElement.textContent = "Waktu Habis!";
-      dagetButton.style.display = 'none'; // Hide the button when time is up
+      dagetButton.style.display = 'none';
       // Opsional: Anda bisa menambahkan redirect atau pesan lain di sini
     } else {
       timeInSeconds--;
@@ -121,7 +133,7 @@
   }
 
   const countdownInterval = setInterval(updateCountdown, 1000);
-  updateCountdown(); // Call immediately to display initial time
+  updateCountdown();
 </script>
 
 </body>
