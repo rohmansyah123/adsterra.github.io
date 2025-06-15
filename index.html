@@ -3,33 +3,36 @@
 <head>
 <title>Ambil Daget Sekarang!</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+  /* Global Resets & Body Styling */
   body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif; /* Font modern */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content: flex-start; /* Konten utama dimulai dari atas */
+    align-items: center; /* Konten utama tetap di tengah horizontal */
     min-height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #eef2f6; /* Latar belakang abu-abu muda modern */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Mencegah scroll horizontal */
+    color: #333; /* Warna teks default */
   }
 
   /* --- Styling Notifikasi Pemenang Live (saat countdown) --- */
   #winner-notification-wrapper {
     width: 100%;
-    background-color: #ffe0b2;
-    color: #e65100;
-    padding: 10px 0;
+    background: linear-gradient(to right, #ffab00, #ffc107); /* Gradien oranye */
+    color: #fff; /* Teks putih */
+    padding: 12px 0; /* Sedikit lebih tebal */
     text-align: center;
-    font-size: 0.9em;
-    font-weight: bold;
+    font-size: 0.95em;
+    font-weight: 600; /* Lebih tebal dari default */
     overflow: hidden;
     white-space: nowrap;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Shadow lebih tebal */
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -50,114 +53,159 @@
       animation-play-state: paused;
   }
 
-  /* --- Styling Konten Utama --- */
+  /* --- Styling Konten Utama (Container) --- */
   .container {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff; /* Latar belakang putih bersih */
+    padding: 40px; /* Padding lebih besar */
+    border-radius: 15px; /* Border radius lebih lembut */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Shadow yang lebih lembut dan dalam */
     text-align: center;
-    max-width: 500px;
-    width: 100%;
-    margin-top: 50px;
-    margin-bottom: 20px;
+    max-width: 450px; /* Lebar maksimum sedikit dikecilkan */
+    width: 90%; /* Mengikuti lebar perangkat, dengan margin */
+    margin-top: 50px; /* Jarak dari notifikasi atas */
+    margin-bottom: 30px; /* Jarak dari bawah */
+    box-sizing: border-box; /* Pastikan padding dan border tidak menambah lebar */
   }
+
   h1 {
-    color: #333;
-    margin-bottom: 10px;
-    font-size: 2.5em;
+    color: #2c3e50; /* Warna gelap modern */
+    margin-bottom: 15px;
+    font-size: 2.8em; /* Ukuran font H1 lebih besar */
+    font-weight: 700; /* Lebih tebal */
+    line-height: 1.2;
   }
   .total-hadiah {
-    color: #007BFF;
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 20px;
+    color: #27ae60; /* Warna hijau cerah modern */
+    font-size: 1.6em;
+    font-weight: 600;
+    margin-bottom: 25px;
   }
   #countdown {
-    font-size: 3em;
-    color: #e44d26;
-    margin-bottom: 30px;
-    font-weight: bold;
+    font-size: 3.5em; /* Ukuran countdown lebih besar */
+    color: #e74c3c; /* Warna merah yang menarik */
+    margin-bottom: 40px; /* Jarak lebih besar dari tombol */
+    font-weight: 700;
+    letter-spacing: 2px; /* Jarak antar huruf */
   }
   .button {
-    background-color: #4CAF50;
+    background: linear-gradient(to right, #2ecc71, #27ae60); /* Gradien hijau */
     color: white;
-    padding: 15px 25px;
+    padding: 18px 35px; /* Padding lebih besar untuk tombol */
     border: none;
-    border-radius: 5px;
-    font-size: 1.2em;
+    border-radius: 8px; /* Border radius lebih lembut */
+    font-size: 1.3em;
+    font-weight: 600;
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease; /* Transisi untuk hover dan active */
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4); /* Shadow tombol */
   }
   .button:hover {
-    background-color: #45a049;
+    transform: translateY(-3px); /* Efek angkat saat hover */
+    box-shadow: 0 8px 20px rgba(46, 204, 113, 0.6);
+  }
+  .button:active {
+    transform: translateY(0); /* Kembali ke posisi semula saat diklik */
+    box-shadow: 0 3px 10px rgba(46, 204, 113, 0.3);
   }
 
   /* --- Styling Daftar Pemenang (setelah waktu habis) --- */
   #winner-list-section {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: left; /* Teks daftar pemenang rata kiri */
-    max-width: 500px;
-    width: 100%;
-    margin-top: 20px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    max-width: 450px;
+    width: 90%;
+    margin-top: 30px; /* Jarak dari container utama */
+    margin-bottom: 40px; /* Jarak dari bawah halaman */
     display: none; /* Sembunyikan secara default */
+    box-sizing: border-box;
   }
   #winner-list-section h2 {
-    color: #333;
+    color: #2c3e50;
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    font-size: 2em;
+    font-weight: 700;
   }
   #winner-list-section ul {
-    list-style-type: none; /* Hapus bullet point default */
+    list-style-type: none;
     padding: 0;
   }
   #winner-list-section ul li {
-    padding: 8px 0;
-    border-bottom: 1px dashed #eee;
+    padding: 10px 0;
+    border-bottom: 1px dashed #e0e0e0; /* Border lebih lembut */
     display: flex;
-    justify-content: space-between; /* Nama di kiri, nominal di kanan */
+    justify-content: space-between;
     align-items: center;
+    font-size: 1em;
   }
   #winner-list-section ul li:last-child {
-    border-bottom: none; /* Hapus border bawah di item terakhir */
+    border-bottom: none;
   }
   #winner-list-section ul li .winner-name {
-    font-weight: bold;
+    font-weight: 600;
     color: #555;
   }
   #winner-list-section ul li .winner-nominal {
-    color: #e44d26; /* Warna daget */
-    font-weight: bold;
+    color: #e74c3c;
+    font-weight: 700;
   }
 
   /* --- Media Queries untuk Responsif --- */
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) { /* Untuk tablet dan mobile */
+    .container, #winner-list-section {
+      max-width: 90%; /* Mengisi hampir seluruh lebar di perangkat yang lebih kecil */
+      padding: 30px;
+    }
+    h1 {
+      font-size: 2.2em;
+    }
+    .total-hadiah {
+      font-size: 1.4em;
+    }
+    #countdown {
+      font-size: 3em;
+      margin-bottom: 30px;
+    }
+    .button {
+      padding: 15px 25px;
+      font-size: 1.1em;
+    }
+    #winner-notification-wrapper {
+        font-size: 0.9em;
+        padding: 10px 0;
+    }
+    #winner-list-section h2 {
+      font-size: 1.8em;
+    }
+    #winner-list-section ul li {
+      font-size: 0.95em;
+    }
+  }
+
+  @media (max-width: 480px) { /* Untuk ponsel kecil */
     .container, #winner-list-section {
       padding: 20px;
-      margin-top: 20px;
+      margin-top: 30px;
     }
     h1 {
       font-size: 1.8em;
     }
     .total-hadiah {
       font-size: 1.2em;
-      margin-bottom: 15px;
     }
     #countdown {
       font-size: 2.5em;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
     .button {
       padding: 12px 20px;
       font-size: 1em;
-      width: 90%;
-      box-sizing: border-box;
     }
     #winner-notification-wrapper {
         font-size: 0.8em;
@@ -168,32 +216,6 @@
     }
     #winner-list-section ul li {
       font-size: 0.9em;
-    }
-  }
-
-  @media (max-width: 400px) {
-    h1 {
-      font-size: 1.5em;
-    }
-    .total-hadiah {
-      font-size: 1em;
-    }
-    #countdown {
-      font-size: 2em;
-    }
-    .button {
-      font-size: 0.9em;
-      padding: 10px 15px;
-    }
-    #winner-notification-wrapper {
-        font-size: 0.75em;
-        padding: 6px 0;
-    }
-    #winner-list-section h2 {
-      font-size: 1.3em;
-    }
-    #winner-list-section ul li {
-      font-size: 0.85em;
     }
   }
 
@@ -220,8 +242,8 @@
 
 <script>
   // --- Data Pemenang Acak ---
-  const firstNames = ["Ahmad", "Budi", "Citra", "Dewi", "Eko", "Fahmi", "Gita", "Hendra", "Irma", "Joko", "Kartika", "Lia", "Maman", "Nia", "Oman", "Putri", "Qiqi", "Rina", "Santi", "Taufik", "Udin", "Vina", "Wati", "Yanti", "Zaki"];
-  const lastNames = ["Santoso", "Wijaya", "Putra", "Dewi", "Utama", "Handayani", "Pratama", "Sari", "Nur", "Setiawan", "Aditya", "Lestari", "Nugraha", "Marbun", "Simanjuntak", "Wahyudi", "Pangestu", "Susanto", "Indah", "Rahayu", "Hasan", "Abdullah", "Cahyono", "Darwis", "Fauzi"];
+  const firstNames = ["Ahmad", "Budi", "Citra", "Dewi", "Eko", "Fahmi", "Gita", "Hendra", "Irma", "Joko", "Kartika", "Lia", "Maman", "Nia", "Oman", "Putri", "Qiqi", "Rina", "Santi", "Taufik", "Udin", "Vina", "Wati", "Yanti", "Zaki", "Amin", "Bayu", "Cinta", "Dian", "Fajar"];
+  const lastNames = ["Santoso", "Wijaya", "Putra", "Dewi", "Utama", "Handayani", "Pratama", "Sari", "Nur", "Setiawan", "Aditya", "Lestari", "Nugraha", "Marbun", "Simanjuntak", "Wahyudi", "Pangestu", "Susanto", "Indah", "Rahayu", "Hasan", "Abdullah", "Cahyono", "Darwis", "Fauzi", "Permana", "Kusuma", "Aziz", "Saputra", "Hidayat"];
 
   function getRandomName() {
     const randomFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];
@@ -249,7 +271,7 @@
 
   // --- Notifikasi Pemenang Live (saat countdown) ---
   const liveWinners = [];
-  for (let i = 0; i < 20; i++) { // 20 pemenang untuk notifikasi live
+  for (let i = 0; i < 20; i++) {
     liveWinners.push({
       name: getRandomName(),
       nominal: getRandomNominal()
@@ -268,12 +290,11 @@
     currentLiveWinnerIndex = (currentLiveWinnerIndex + 1) % liveWinners.length;
   }
 
-  // Panggil updateWinnerNotification setiap beberapa detik (misal: 3 detik)
   const liveNotificationInterval = setInterval(updateWinnerNotification, 3000);
-  updateWinnerNotification(); // Panggil pertama kali agar langsung muncul
+  updateWinnerNotification();
 
   // --- Countdown Timer ---
-  let timeInSeconds = 50; // Countdown 50 detik
+  let timeInSeconds = 50;
   const countdownElement = document.getElementById('countdown');
   const dagetButton = document.getElementById('dagetButton');
   const winnerListSection = document.getElementById('winner-list-section');
@@ -320,7 +341,7 @@
   }
 
   const countdownInterval = setInterval(updateCountdown, 1000);
-  updateCountdown(); // Call immediately to display initial time
+  updateCountdown();
 </script>
 
 </body>
