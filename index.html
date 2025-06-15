@@ -7,46 +7,45 @@
   body {
     font-family: Arial, sans-serif;
     display: flex;
-    flex-direction: column; /* Mengubah arah flex menjadi kolom */
-    justify-content: flex-start; /* Mulai dari atas */
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
     background-color: #f0f0f0;
     margin: 0;
-    padding: 0; /* Padding di body akan dihandle oleh notifikasi dan container */
+    padding: 0;
     box-sizing: border-box;
-    overflow-x: hidden; /* Mencegah scroll horizontal */
+    overflow-x: hidden;
   }
 
-  /* --- Styling Notifikasi Pemenang Live --- */
+  /* --- Styling Notifikasi Pemenang Live (saat countdown) --- */
   #winner-notification-wrapper {
     width: 100%;
-    background-color: #ffe0b2; /* Warna cerah untuk notifikasi (oranye muda) */
-    color: #e65100; /* Warna teks oranye gelap */
+    background-color: #ffe0b2;
+    color: #e65100;
     padding: 10px 0;
     text-align: center;
     font-size: 0.9em;
     font-weight: bold;
-    overflow: hidden; /* Penting untuk animasi geser */
-    white-space: nowrap; /* Mencegah teks notifikasi patah baris */
+    overflow: hidden;
+    white-space: nowrap;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: sticky; /* Membuat notifikasi tetap di atas saat di-scroll */
+    position: sticky;
     top: 0;
-    z-index: 1000; /* Pastikan di atas elemen lain */
+    z-index: 1000;
   }
 
   #winner-notification-text {
-    display: inline-block; /* Agar bisa dianimasikan */
-    padding-left: 100%; /* Memulai teks dari luar layar kanan */
-    animation: marquee 15s linear infinite; /* Animasi geser */
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 15s linear infinite;
   }
 
   @keyframes marquee {
     0% { transform: translateX(0%); }
-    100% { transform: translateX(-100%); } /* Bergeser ke kiri */
+    100% { transform: translateX(-100%); }
   }
 
-  /* Menghentikan animasi saat hover (opsional) */
   #winner-notification-text:hover {
       animation-play-state: paused;
   }
@@ -60,8 +59,8 @@
     text-align: center;
     max-width: 500px;
     width: 100%;
-    margin-top: 50px; /* Jarak dari notifikasi atas */
-    margin-bottom: 20px; /* Jarak dari bawah */
+    margin-top: 50px;
+    margin-bottom: 20px;
   }
   h1 {
     color: #333;
@@ -96,12 +95,52 @@
     background-color: #45a049;
   }
 
+  /* --- Styling Daftar Pemenang (setelah waktu habis) --- */
+  #winner-list-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Teks daftar pemenang rata kiri */
+    max-width: 500px;
+    width: 100%;
+    margin-top: 20px;
+    display: none; /* Sembunyikan secara default */
+  }
+  #winner-list-section h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  #winner-list-section ul {
+    list-style-type: none; /* Hapus bullet point default */
+    padding: 0;
+  }
+  #winner-list-section ul li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+    display: flex;
+    justify-content: space-between; /* Nama di kiri, nominal di kanan */
+    align-items: center;
+  }
+  #winner-list-section ul li:last-child {
+    border-bottom: none; /* Hapus border bawah di item terakhir */
+  }
+  #winner-list-section ul li .winner-name {
+    font-weight: bold;
+    color: #555;
+  }
+  #winner-list-section ul li .winner-nominal {
+    color: #e44d26; /* Warna daget */
+    font-weight: bold;
+  }
+
   /* --- Media Queries untuk Responsif --- */
 
   @media (max-width: 600px) {
-    .container {
+    .container, #winner-list-section {
       padding: 20px;
-      margin-top: 20px; /* Kurangi margin atas di mobile */
+      margin-top: 20px;
     }
     h1 {
       font-size: 1.8em;
@@ -121,8 +160,14 @@
       box-sizing: border-box;
     }
     #winner-notification-wrapper {
-        font-size: 0.8em; /* Kecilkan font notifikasi di mobile */
+        font-size: 0.8em;
         padding: 8px 0;
+    }
+    #winner-list-section h2 {
+      font-size: 1.5em;
+    }
+    #winner-list-section ul li {
+      font-size: 0.9em;
     }
   }
 
@@ -144,6 +189,12 @@
         font-size: 0.75em;
         padding: 6px 0;
     }
+    #winner-list-section h2 {
+      font-size: 1.3em;
+    }
+    #winner-list-section ul li {
+      font-size: 0.85em;
+    }
   }
 
 </style>
@@ -157,14 +208,20 @@
 <div class="container">
   <h1>Ambil Daget Sekarang!</h1>
   <p class="total-hadiah">Total Hadiah: **Rp500.000**</p>
-  <div id="countdown">03:00</div>
+  <div id="countdown">00:50</div>
   <a href="#" class="button" id="dagetButton">Klaim Daget Anda!</a>
+</div>
+
+<div id="winner-list-section">
+  <h2>Daftar Pemenang Daget</h2>
+  <ul id="winner-list">
+    </ul>
 </div>
 
 <script>
   // --- Data Pemenang Acak ---
-  const firstNames = ["Ahmad", "Budi", "Citra", "Dewi", "Eko", "Fahmi", "Gita", "Hendra", "Irma", "Joko", "Kartika", "Lia", "Maman", "Nia", "Oman", "Putri", "Qiqi", "Rina", "Santi", "Taufik"];
-  const lastNames = ["Santoso", "Wijaya", "Putra", "Dewi", "Utama", "Handayani", "Pratama", "Sari", "Nur", "Setiawan", "Aditya", "Lestari", "Nugraha", "Marbun", "Simanjuntak", "Wahyudi", "Pangestu", "Susanto", "Indah", "Rahayu"];
+  const firstNames = ["Ahmad", "Budi", "Citra", "Dewi", "Eko", "Fahmi", "Gita", "Hendra", "Irma", "Joko", "Kartika", "Lia", "Maman", "Nia", "Oman", "Putri", "Qiqi", "Rina", "Santi", "Taufik", "Udin", "Vina", "Wati", "Yanti", "Zaki"];
+  const lastNames = ["Santoso", "Wijaya", "Putra", "Dewi", "Utama", "Handayani", "Pratama", "Sari", "Nur", "Setiawan", "Aditya", "Lestari", "Nugraha", "Marbun", "Simanjuntak", "Wahyudi", "Pangestu", "Susanto", "Indah", "Rahayu", "Hasan", "Abdullah", "Cahyono", "Darwis", "Fauzi"];
 
   function getRandomName() {
     const randomFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];
@@ -181,36 +238,46 @@
     return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(randomValue);
   }
 
-  const winners = [];
-  for (let i = 0; i < 20; i++) {
-    winners.push({
+  // --- Generate 100 Pemenang untuk Daftar Akhir ---
+  const allWinners = [];
+  for (let i = 0; i < 100; i++) {
+    allWinners.push({
       name: getRandomName(),
       nominal: getRandomNominal()
     });
   }
 
-  // --- Notifikasi Pemenang Live ---
+  // --- Notifikasi Pemenang Live (saat countdown) ---
+  const liveWinners = [];
+  for (let i = 0; i < 20; i++) { // 20 pemenang untuk notifikasi live
+    liveWinners.push({
+      name: getRandomName(),
+      nominal: getRandomNominal()
+    });
+  }
+
   const winnerNotificationText = document.getElementById('winner-notification-text');
-  let currentWinnerIndex = 0;
+  let currentLiveWinnerIndex = 0;
 
   function updateWinnerNotification() {
-    if (winners.length === 0) return;
+    if (liveWinners.length === 0) return;
 
-    const winner = winners[currentWinnerIndex];
+    const winner = liveWinners[currentLiveWinnerIndex];
     winnerNotificationText.textContent = `Selamat! ${winner.name} baru saja Klaim Daget sebesar ${winner.nominal}!`;
 
-    currentWinnerIndex = (currentWinnerIndex + 1) % winners.length;
+    currentLiveWinnerIndex = (currentLiveWinnerIndex + 1) % liveWinners.length;
   }
 
   // Panggil updateWinnerNotification setiap beberapa detik (misal: 3 detik)
-  // Interval animasi CSS sudah handle pengguliran, jadi ini hanya untuk mengubah teks
-  setInterval(updateWinnerNotification, 3000); // Ganti pemenang setiap 3 detik
+  const liveNotificationInterval = setInterval(updateWinnerNotification, 3000);
   updateWinnerNotification(); // Panggil pertama kali agar langsung muncul
 
   // --- Countdown Timer ---
-  let timeInSeconds = 180; // 3 menit
+  let timeInSeconds = 50; // Countdown 50 detik
   const countdownElement = document.getElementById('countdown');
   const dagetButton = document.getElementById('dagetButton');
+  const winnerListSection = document.getElementById('winner-list-section');
+  const winnerList = document.getElementById('winner-list');
 
   function updateCountdown() {
     const minutes = Math.floor(timeInSeconds / 60);
@@ -221,18 +288,35 @@
 
     if (timeInSeconds <= 0) {
       clearInterval(countdownInterval);
+      clearInterval(liveNotificationInterval); // Hentikan notifikasi live
       countdownElement.textContent = "Waktu Habis!";
-      dagetButton.style.display = 'none';
-      winnerNotificationText.textContent = "Daget hari ini telah habis! Nantikan kejutan selanjutnya.";
+      dagetButton.style.display = 'none'; // Sembunyikan tombol
+      
+      // Ubah tampilan notifikasi atas
+      winnerNotificationText.textContent = "Daget hari ini telah berakhir! Berikut daftar pemenangnya.";
       winnerNotificationText.style.animation = 'none'; // Hentikan animasi marquee
       winnerNotificationText.style.textAlign = 'center';
       winnerNotificationText.style.paddingLeft = '0';
       document.getElementById('winner-notification-wrapper').style.backgroundColor = '#f44336'; /* Merah */
       document.getElementById('winner-notification-wrapper').style.color = '#fff'; /* Putih */
 
+      // Tampilkan daftar pemenang
+      displayWinnerList(allWinners);
+      winnerListSection.style.display = 'block'; // Tampilkan bagian daftar pemenang
+
     } else {
       timeInSeconds--;
     }
+  }
+
+  // Fungsi untuk menampilkan daftar pemenang
+  function displayWinnerList(winnersToDisplay) {
+    winnerList.innerHTML = ''; // Kosongkan daftar sebelumnya
+    winnersToDisplay.forEach(winner => {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `<span class="winner-name">${winner.name}</span><span class="winner-nominal">${winner.nominal}</span>`;
+      winnerList.appendChild(listItem);
+    });
   }
 
   const countdownInterval = setInterval(updateCountdown, 1000);
